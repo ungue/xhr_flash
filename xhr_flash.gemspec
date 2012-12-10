@@ -13,4 +13,9 @@ Gem::Specification.new do |gem|
   gem.name          = "xhr_flash"
   gem.require_paths = ["lib"]
   gem.version       = XhrFlash::VERSION
+
+  gem.add_dependency "rails", '~> 3.1'
+ 
+  gem.add_development_dependency "sqlite3"
+  gem.add_development_dependency "rspec-rails"
 end

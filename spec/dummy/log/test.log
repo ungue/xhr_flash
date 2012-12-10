@@ -1,0 +1,45 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms)
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms)
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms)
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms)
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms)
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms)
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms)
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms)
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms)
+Connecting to database specified by database.yml
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms)
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms)
+Processing by ApplicationController#get_with_success_flash as JS
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms)

@@ -1,5 +1,3 @@
 require "xhr_flash/version"
-
-module XhrFlash
-  # Your code goes here...
-end
+require "xhr_flash/action_controller"
+require "xhr_flash/engine" if defined?(Rails)
