@@ -3,10 +3,10 @@
 This gem is intended to simplify flash object presentation when an AJAX request was done.
 Its work is very simple. Explained below:
 
-1.- Controller detects is an AJAX request is made
-2.- If flash object exists, then it's serialized into response attributes
-3.- Flash object is discarded
-4.- The client browser will be capable of render the message by mean of some javascript.
+1. Controller detects is an AJAX request is made
+2. If flash object exists, then it's serialized into response attributes
+3. Flash object is discarded
+4. The client browser will be capable of render the message by mean of some javascript.
 
 ## Installation
 
