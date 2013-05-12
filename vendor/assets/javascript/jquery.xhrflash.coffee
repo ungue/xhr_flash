@@ -12,7 +12,7 @@ class Flash
 
     @slideUpTimer() if @msgArea.find('.alert').length > 0
 
-    object.ajaxComplete (e, xhr) =>
+    $(document).ajaxComplete (e, xhr) =>
       # Removes previous messages
       headers = @flashHeaders(xhr)
       
