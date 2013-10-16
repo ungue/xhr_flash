@@ -1,75 +1,45 @@
-$ = jQuery
+do ($ = jQuery) ->
 
-class Flash
+  class Flash
 
-  constructor: (object, settings) ->
-    # Set timeout to hide current alerts if any
-    @msgArea    = object
-    @msgList    = settings.msgs
-    @tag        = settings.tag
-    @class      = settings.class
-    @timeout    = settings.timeout
-    @bootstrap  = settings.bootstrap
+    defaults:
+      msgs      : ['Success', 'Warning', 'Error', 'Notice', 'Alert']
+      timeout   : 5000
+      template  : (data) ->
+        fn = -> 
+          messages = for messageType, msg of @
+            "<div class='alert alert-#{messageType}'>#{msg}</div>"
+          messages.join ''
+        fn.call(data)
 
-    @slideUpTimer() if @msgArea.find('.alert').length > 0
+    constructor: (el, settings) ->
+      @$el = el
+      {@msgs, @timeout, @template} = $.extend({}, @defaults, settings)
 
-    $(document).ajaxComplete (e, xhr) =>
-      # Removes previous messages
-      headers = @flashHeaders(xhr)
+      @$el.delay(@timeout).slideUp('fast') unless @$el.is(':empty')
 
-      @msgArea.hide().empty()
-      return if $.isEmptyObject(headers)
+      $(document).ajaxComplete (e, xhr) =>
+        headers = @flashHeaders(xhr)
+        html = ''
+        html = @template(headers) unless $.isEmptyObject(headers)
 
-      @msgArea.append(@messageTag(type, msg)) for type, msg of headers
-      @msgArea.slideDown('fast', @slideUpTimer)
+        @$el.html html
+        @$el.stop(true, true).slideDown('fast')
+          .delay(@timeout)
+          .slideUp('fast')
 
-  messageTag: (type, msg) ->
-    type = if @bootstrap then @bootstrapType(type) else type
-    close_btn = if @bootstrap then '<button type="button" class="close" data-dismiss="alert">&times;</button>' else ''
-    "<#{@tag} class=\"#{@class} #{@class}-#{type.toLowerCase()}\">#{close_btn}#{msg}</#{@tag}>"
+    flashHeaders: (xhr) ->
+      @msgs.reduce(
+        (h, type) ->
+          msg = xhr.getResponseHeader("X-Flash-#{type}")
+          h[type.toLowerCase()] = msg if msg?
+          h
+        , {}
+      )
 
-  bootstrapType: (type) ->
-    switch type.toLowerCase()
-      when 'notice', 'success' then 'success'
-      when 'error' then 'error'
-      when 'alert', 'warning' then 'warning'
-      else type
+  $.fn.xhrflash = (options) ->
+    @each ->
+      $this = $(@)
+      data  = $this.data 'xhrflash'
 
-  flashHeaders: (xhr) ->
-    @msgList.reduce(
-      (h, type) ->
-        msg = xhr.getResponseHeader("X-Flash-#{type}")
-        h[type.toLowerCase()] = msg if msg?
-        h
-      , {}
-    )
-
-  slideUpTimer: =>
-    clearTimeout(@_timer) if @_timer?
-    @_timer = setTimeout(
-      =>
-        @msgArea.slideUp()
-      , @timeout
-    )
-
-$.fn.xhrflash = (options) ->
-  $container = @
-
-  settings =
-    msgs      : ['Success', 'Warning', 'Error', 'Notice', 'Alert']
-    tag       : 'div'
-    class     : 'alert'
-    timeout   : 5000
-    bootstrap : false
-
-  settings = $.extend settings, options
-
-  @each ->
-    $this = $(@)
-    data  = $this.data 'xhrflash'
-
-    unless data
-      # Logic
-      new Flash($this, settings)
-
-      $this.data 'xhrflash', true
+      $this.data('xhrflash', new Flash($this, options)) unless data
